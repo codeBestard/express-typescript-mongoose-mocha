@@ -63,6 +63,7 @@
     "start": "node ./build/server",
     "clean": "rimraf node_modules/",
     "test": "nyc mocha",
+    "build": "tsc",
     "ts": "tsc --watch"
   },
   "nyc": {
