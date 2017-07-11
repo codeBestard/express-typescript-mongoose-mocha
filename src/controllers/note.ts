@@ -13,7 +13,7 @@ class NoteController {
             let result = await this.noteService.findAll();
             res.status( httpStatus.OK).json( result );
         } catch (ex) {
-            console.log( ex );
+            // console.log( ex );
             res.status(httpStatus.INTERNAL_SERVER_ERROR).json( { message: ex.message } );
         }
     }
@@ -24,7 +24,7 @@ class NoteController {
             let status = result ? httpStatus.OK : httpStatus.NO_CONTENT;
             res.status( status ).json( result );
         } catch (ex) {
-            console.log( ex );
+            // console.log( ex );
             res.status(httpStatus.INTERNAL_SERVER_ERROR).json( { message: ex.message } );
         }
     }
@@ -34,7 +34,7 @@ class NoteController {
             let result = await this.noteService.save( req.body );
             res.status( httpStatus.CREATED ).json( result );
         } catch (ex) {
-            console.log( ex );
+            // console.log( ex );
             res.status(httpStatus.INTERNAL_SERVER_ERROR).json( { message: ex.message } );
         }
     }
@@ -44,7 +44,7 @@ class NoteController {
             await this.noteService.delete( req.params.id );
             res.status( httpStatus.ACCEPTED ).end();
         } catch (ex) {
-            console.log( ex );
+            // console.log( ex );
             res.status(httpStatus.INTERNAL_SERVER_ERROR).json( { message: ex.message } );
         }
     }
@@ -55,7 +55,7 @@ class NoteController {
             let result = await this.noteService.update( req.body );
             res.status( httpStatus.OK ).json( result );
         } catch (ex) {
-            console.log( ex );
+            // console.log( ex );
             res.status(httpStatus.INTERNAL_SERVER_ERROR).json( { message: ex.message } );
         }
     }
