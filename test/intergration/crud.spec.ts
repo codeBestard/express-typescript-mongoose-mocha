@@ -11,7 +11,7 @@ import { tagModel } from "../../src/models/tagModel";
 import { newNotes, newTags } from "../seed";
 
 // skipping until needed
-describe.skip( "Intergration Test with SuperTest Should", function () {
+describe( "Intergration Test with SuperTest Should", function () {
 
     before( "clear data", function ( done ) {
         let promises = <any>[];
