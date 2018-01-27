@@ -17,9 +17,9 @@ let mockNoteService: INoteService = {
 };
 
 
-describe("Note controller", function() {
+describe("Note controller Should", function() {
 
-    it("Should get all notes", async function() {
+    it("get all notes", async function() {
         let res = { status (stat) { return this; },
                     json  (result) {
                         expect(result).to.be.instanceof(Array);
@@ -36,24 +36,26 @@ describe("Note controller", function() {
         findAllSpy.restore();
     });
 
-    it("Should return http status 500 when error occurs on getting all notes", async function() {
+    it("throw error when error occurs on getting all notes",  function() {
         let res = { status (stat) {
-                        stat.should.be.equal(500);
                         return this; },
                     json () { }
         };
 
         let findAllStub      = sinon.stub(mockNoteService, "findAll")
-                                    .throws("something failed");
+                                    .throws( { error: "something failed" } );
+
         const noteController = new NoteController(mockNoteService);
 
-        await noteController.getNotes(<any>{}, <any>res, <any>{});
-
-        findAllStub.calledOnce.should.be.true;
-        findAllStub.restore();
+        noteController.getNotes(<any>{}, <any>res, <any>{})
+                    .catch(e =>{
+                        expect(e.error).to.equal( "something failed" );
+                        findAllStub.calledOnce.should.be.true;
+                        findAllStub.restore();
+                    });
     });
 
-    it("Should find a note", async function() {
+    it("find a note", async function() {
         let req = { params: { id: "000ABC" }};
         let res = { status (stat) { return this; },
                     json  (result) {
@@ -71,7 +73,7 @@ describe("Note controller", function() {
         findByIdSpy.restore();
     });
 
-    it("Should save a note", async function() {
+    it("save a note", async function() {
         let req = { body: newNotes[0] };
         let res = { status (stat) { return this; },
                     json  (result) {
@@ -89,7 +91,7 @@ describe("Note controller", function() {
         saveSpy.restore();
     });
 
-    it("Should save a note", async function() {
+    it("update a note", async function() {
         let req = { params: { id: "000ABC" } , body: newNotes[0] };
         let res = { status (stat) { return this; },
                     json  (result) {
@@ -109,7 +111,7 @@ describe("Note controller", function() {
 
 
 
-    it("Should delete a note", async function() {
+    it("delete a note", async function() {
         let req = { params: { id: "000ABC" }};
         let res = { status (stat) { stat.should.be.equal(202);
                                      return this; },

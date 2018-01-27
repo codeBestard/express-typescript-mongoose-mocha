@@ -9,6 +9,7 @@
             "request": "launch",
             "protocol": "inspector",
             "name": "Launch Program",
+            "outputCapture": "std",   // capture stdout/stderr stream: eg. morgan logging
             "program": "${workspaceRoot}\\build\\server",
             "outFiles": [
                 "${workspaceRoot}/build/**/*.js"

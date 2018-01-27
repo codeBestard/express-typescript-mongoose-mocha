@@ -1,5 +1,5 @@
 import * as express from "express";
-import homeRoutes from "../routes//home";
+import homeRoutes from "../routes/home";
 import noteRoutes from "../routes/note";
 import userRoutes from "../routes/user";
 

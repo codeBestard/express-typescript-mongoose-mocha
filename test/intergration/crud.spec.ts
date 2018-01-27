@@ -10,7 +10,8 @@ import { noteModel } from "../../src/models/noteModel";
 import { tagModel } from "../../src/models/tagModel";
 import { newNotes, newTags } from "../seed";
 
-describe( "SuperTest", function () {
+// skipping until needed
+describe.skip( "Intergration Test with SuperTest Should", function () {
 
     before( "clear data", function ( done ) {
         let promises = <any>[];
@@ -33,9 +34,9 @@ describe( "SuperTest", function () {
 
 
 
-    describe( "CRUD Test", function () {
+    describe( "CRUD Test shouold", function () {
 
-        it( "should get welcome message, GET /api", function ( done ) {
+        it( "get welcome message, GET /api", function ( done ) {
             agent.get( "/api" )
                 .expect( reponse => {
                     reponse.text.should.equal( "Welcome to notekeeper API" );
@@ -43,7 +44,7 @@ describe( "SuperTest", function () {
                 .expect( 200, done );
         } );
 
-        it( "should create new note, POST /api/v1/notes", function ( done ) {
+        it( "create new note, POST /api/v1/notes", function ( done ) {
             const newNote = {
                 noteTitle: "test123",
                 noteText: "today's task is....",
@@ -60,7 +61,7 @@ describe( "SuperTest", function () {
                 .expect( 201, done );
         } );
 
-        it( "should get all notes, GET /api/v1/notes", function ( done ) {
+        it( "get all notes, GET /api/v1/notes", function ( done ) {
 
             agent.get( "/api/v1/notes" )
                 .expect( response => {
@@ -71,7 +72,7 @@ describe( "SuperTest", function () {
                 .expect( 200, done );
         } );
 
-        it( "should update note, PUT /api/v1/note/:id", function ( done ) {
+        it( "update note, PUT /api/v1/note/:id", function ( done ) {
             let id: string = "";
 
             agent.post( "/api/v1/notes" )
@@ -98,7 +99,7 @@ describe( "SuperTest", function () {
 
         } );
 
-        it( "should delete note, DELETE /api/v1/note/:id", function ( done ) {
+        it( "delete note, DELETE /api/v1/note/:id", function ( done ) {
             let id: string = "";
 
             agent.post( "/api/v1/notes" )
@@ -112,7 +113,7 @@ describe( "SuperTest", function () {
 
         } );
 
-        it( "should find note by id, GET /api/v1/note/:id", function ( done ) {
+        it( "find note by id, GET /api/v1/note/:id", function ( done ) {
             let id: string = "";
 
             agent.post( "/api/v1/notes" )
